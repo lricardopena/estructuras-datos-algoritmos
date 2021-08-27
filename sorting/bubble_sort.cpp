@@ -1,15 +1,17 @@
 #include <iostream>
-#include <vector>
+// #include <vector>
 #include <bits/stdc++.h>
 
 using namespace std;
 
+int global_i = 0;
+
 vector<int> bubble_sort_algorithm(vector<int> A){
     // Get the size of the vector
     int n = A.size();
-
     for(int i = 0; i < n ; i++){
         for(int j = 0; j < n - i -1 ; j++){
+            global_i++;
             if (A[j] > A[j + 1]){
                 // Exchange A[j + 1] and A[j]
                 int tmp_value = A[j];
@@ -46,7 +48,7 @@ int main(){
     for (int i = 0; i < num_items; i++) {
         cout << x_order[i] << " ";
     }
-    cout << endl;
+    cout << endl << global_i << endl;
 
     return 0;
 }

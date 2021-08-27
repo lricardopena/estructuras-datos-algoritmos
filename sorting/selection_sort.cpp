@@ -4,6 +4,8 @@
 
 using namespace std;
 
+int global_i = 0; 
+
 vector<int> selection_sort_algorithm(vector<int> A){
     // Get the size of the vector
     int n = A.size();
@@ -11,6 +13,7 @@ vector<int> selection_sort_algorithm(vector<int> A){
     for(int i = 0; i < n - 1 ; i++){
         int min_idx = i;
         for(int j = i + 1; j < n ; j++){
+            global_i++;
             if (A[j] < A[min_idx]){
                 // Exchange A[j] and A[min_idx]
                 int tmp_value = A[j];
@@ -47,7 +50,7 @@ int main(){
     for (int i = 0; i < num_items; i++) {
         cout << x_order[i] << " ";
     }
-    cout << endl;
+    cout << endl << global_i << endl;
 
     return 0;
 }
