@@ -34,6 +34,7 @@ template <class T> class CustomLinkedList{
             if(head == NULL){ //if our list is currently empty
                 head = new Node<T>; //Create new node of type T
                 head->set_data(info);
+                head->set_next(NULL);
             }
             else{ //if not empty add to the end and move the tail
                 Node<T>* temp = new Node<T>;
@@ -59,8 +60,24 @@ template <class T> class CustomLinkedList{
         }
 
         // Method adds info to the begining of the list
-        void add_after_node(T value_insert, T value_after){
-            /*Implements this part*/
+        void add_after_node(T value_insert, T value_target){
+            Node<T>* current_node = this->head;
+            // Search for the node to delete
+            while ( current_node && current_node->data != value_target){
+                current_node = current_node->next;
+            }
+
+            // current node is empty the node wasn't found 
+            if(!current_node || current_node == NULL){
+                return;
+            }
+
+            Node<T>* node_insert = new Node<T>;
+            node_insert->set_data(value_insert);
+            
+            node_insert->set_next(current_node->next);
+
+            current_node->next = node_insert;
         }
 
 
@@ -118,6 +135,8 @@ int main(){
     firstList.add_end(34);
     firstList.print_list();
 
+    firstList.add_after_node(10, 33);
+    firstList.print_list();
     // firstList.delete_node(34);
     // firstList.print_list();
     return 0;
