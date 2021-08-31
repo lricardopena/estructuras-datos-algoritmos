@@ -6,7 +6,7 @@ template <class T> class Node {
     private:
         T data; // The object information
         Node* next; // Pointer to the next node element
-        
+
     public:
         Node(T new_data, Node* next_node){
             this->data = new_data;
@@ -120,6 +120,19 @@ template <class T> class CustomLinkedList{
             delete node_to_delete;
         }
 
+        Node<T>* search_node(T value_target){
+            Node<T>* current_node = this->head;
+            // Search for the node to delete
+            while ( current_node){
+                if(current_node->get_data() == value_target){
+                    return current_node;
+                }
+                current_node = current_node->get_next();
+            }
+
+            return NULL;
+        }
+
         void print_list(){
             Node<T>* current_node = this->head;
             while (current_node != NULL){
@@ -147,7 +160,10 @@ int main(){
 
     firstList.add_after_node(10, 33);
     firstList.print_list();
-    // firstList.delete_node(34);
-    // firstList.print_list();
+    
+    Node<int>* element = firstList.search_node(11);
+
+    if(element)
+        cout << element->get_data() << endl;
     return 0;
 }
