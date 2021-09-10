@@ -60,9 +60,10 @@ template <class T> class CustomStack{
         T pop(){
             T data;
             if(this->head){
-                data = this->head->get_data();
+                Node<T>* node = this->head;
+                data = node->get_data();
                 this->head = this->head->get_next();
-
+                delete node;
                 this->n--;
             }
             return data;
